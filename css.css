@@ -1,8 +1,10 @@
 body, div, dl, dt, dd, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td, ul {
+    filter: blur(0.4px);
     margin: 0;
     padding: 0;
 }
 body, button, input, select, textarea {
+
     font-size: 100%;
 }
 img {
