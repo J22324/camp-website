@@ -47,7 +47,13 @@ a:link, a:active, a:visited {
     height: 100vh;
 }
 
-
+#container_wrap .header{
+    width: 25%;
+    height: 100%;
+    position: relative;
+    background-color: aqua;
+    border-right: double 5px grey;
+}
 #container_wrap .contents{
     width: 75%;
     height: 100%;
