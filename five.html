@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>p5.js</title>
+  <style>
+    body {
+      margin: 0; /* 余白を完全に削除 */
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.11.1/lib/p5.min.js"></script>
+</head>
+<body>
+
+<script>
+function setup() {
+  createCanvas(windowWidth, windowHeight); // ウィンドウ全体をキャンバスに
+  background(0);
+  fill(255, 255, 0); // 星の色を黄色に設定
+  noStroke();
+  drawStar(width / 2, height / 2, 100); // 中央に五芒星を描画
+}
+
+function drawStar(x, y, size) {
+  let angle = PI / 2; // 開始角度
+  let step = TWO_PI / 5; // 1/5円の角度
+
+  beginShape();
+  // 外側と内側の頂点を個別に計算
+  vertex(x + cos(angle) * size, y - sin(angle) * size);
+  vertex(x + cos(angle + step / 2) * (size / 2), y - sin(angle + step / 2) * (size / 2));
+  vertex(x + cos(angle + step) * size, y - sin(angle + step) * size);
+  vertex(x + cos(angle + step * 1.5) * (size / 2), y - sin(angle + step * 1.5) * (size / 2));
+  vertex(x + cos(angle + step * 2) * size, y - sin(angle + step * 2) * size);
+  vertex(x + cos(angle + step * 2.5) * (size / 2), y - sin(angle + step * 2.5) * (size / 2));
+  vertex(x + cos(angle + step * 3) * size, y - sin(angle + step * 3) * size);
+  vertex(x + cos(angle + step * 3.5) * (size / 2), y - sin(angle + step * 3.5) * (size / 2));
+  vertex(x + cos(angle + step * 4) * size, y - sin(angle + step * 4) * size);
+  vertex(x + cos(angle + step * 4.5) * (size / 2), y - sin(angle + step * 4.5) * (size / 2));
+  endShape(CLOSE);
+}
+</script>
+
+</body>
+</html>
