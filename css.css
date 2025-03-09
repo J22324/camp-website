@@ -4,7 +4,7 @@ body, div, dl, dt, dd, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, texta
     padding: 0;
 }
 body, button, input, select, textarea {
-
+    filter: blur(0.4px);
     font-size: 100%;
 }
 img {
