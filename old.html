@@ -8,91 +8,99 @@
     <meta http-equiv="content-style-type" content="text/css" />
     <meta http-equiv="content-script-type" content="text/javascript" />
     <meta name="format-detection" content="telephone=no">
-    <title>古のホームページ</title>
+    <title>懐かしのホームページ</title>
     <link rel="stylesheet" href="css.css" media="all" />
 </head>
 
 <body>
 
+
+
     <div id="container_wrap">
         <header class="header">
+            <nav id="gnavi">
+                <ul>
+                    <li><input id="block-01" type="radio" name="menu" class="toggle" onclick="select_menu()" checked>
+                        <label class="Label" for="block-01">トップページ</label>
+                    </li>
+                    <li><input id="block-02" type="radio" name="menu" class="toggle" onclick="select_menu()">
+                        <label class="Label" for="block-02">このホームページについて</label>
+                    </li>
+                    <li><input id="block-03" type="radio" name="menu" class="toggle" onclick="select_menu()">
+                        <label class="Label" for="block-03">工事中</label>
+                    </li>
+                </ul>
+            </nav>
+
+        </header>
+
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+            import { getFirestore, doc, runTransaction } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+    
+            const firebaseConfig = {
+                apiKey: "AIzaSyAQi5UMeXSFFaN4OELBLEWetmSvapZYWQ4",
+                authDomain: "counter-bd48c.firebaseapp.com",
+                projectId: "counter-bd48c",
+                storageBucket: "counter-bd48c.firebasestorage.app",
+                messagingSenderId: "330983882290",
+                appId: "1:330983882290:web:94a5d8c5596b619bf3862b"
+            };
+    
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
+            const counterDoc = doc(db, 'counters', 'access');
+    
+            // カウンターを増やして表示
+            const incrementCounter = async () => {
+                let newCount = 0;
+                await runTransaction(db, async (transaction) => {
+                    const docSnap = await transaction.get(counterDoc);
+                    newCount = (docSnap.exists() ? docSnap.data().count : 0) + 1;
+                    transaction.set(counterDoc, { count: newCount });
+                });
+                document.getElementById('counter').textContent = newCount;
+            };
+    
+            // ページロード時にカウンターを増やして表示
+            incrementCounter();
+        </script>
+
+        <div class="contents">
             <section id="section_1">
                 <h1 class="main_ttl niji">
-                    <span>★</span><span>よ</span><span>う</span><span>こ</span><span>！</span><span>★</span>
+                    <span>★</span><span>よ</span><span>う</span><span>こ</span><span>そ</span><span>懐</span><span>か</span><span>し</span><span>の</span><span>ホ</span><span>ー</span><span>ム</span><span>ペ</span><span>ー</span><span>ジ</span><span>へ</span><span>！</span><span>★</span>
                 </h1>
-        </header>
-        <div class="contents">
-
-
-
-            <script type="module">
-                // Import the functions you need from the SDKs you need
-                import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-                import { getFirestore, doc, runTransaction } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
-
-                const firebaseConfig = {
-                    apiKey: "AIzaSyAQi5UMeXSFFaN4OELBLEWetmSvapZYWQ4",
-                    authDomain: "counter-bd48c.firebaseapp.com",
-                    projectId: "counter-bd48c",
-                    storageBucket: "counter-bd48c.firebasestorage.app",
-                    messagingSenderId: "330983882290",
-                    appId: "1:330983882290:web:94a5d8c5596b619bf3862b"
-                };
-
-                // Initialize Firebase
-                const app = initializeApp(firebaseConfig);
-                const db = getFirestore(app);
-                const counterDoc = doc(db, 'counters', 'access');
-
-                // カウンターを増やして表示
-                const incrementCounter = async () => {
-                    let newCount = 0;
-                    await runTransaction(db, async (transaction) => {
-                        const docSnap = await transaction.get(counterDoc);
-                        newCount = (docSnap.exists() ? docSnap.data().count : 0) + 1;
-                        transaction.set(counterDoc, { count: newCount });
-                    });
-                    document.getElementById('counter').textContent = newCount;
-                };
-
-                // ページロード時にカウンターを増やして表示
-                incrementCounter();
-            </script>
-
-            <div>
-                <h2>あなたは <span id="counter"></span>人目のお客様です</h2>
-            </div>
-
-
-            <div class="m30">
-                <div class="text_attention">
-                    <p>↓キリ番報告はこちら↓</p>
+                <p class="counter m30">あなたは<span id="counter"></span>人目のお客様です</p> 
+                
+                <div class="m30">
+                    <div class="text_attention">
+                        <p>↓キリ番報告はこちら↓</p>
+                    </div>
+                    <a href="" class="bbs">掲示板</a>
+                    <p class="blink attention">踏み逃げ禁止</p>
                 </div>
-                <a href="" class="bbs">掲示板</a>
-
-                <p class="blink attention">踏み逃げ禁止</p></div>
-            </div>
+                <p class="m50">懐かしのあの画質の荒さも再現したい<br>2000年ってこんな感じだったよね知らんけど</p>
+               
+                <div class="text_attention">
+                    <p>↓相互リンク募集中↓</p>
+                </div>
+                <ul class="list_banner">
+                    <li>
+                        <a href="" class="banner1">★同盟★</a>
+                    </li>
+                    <li>
+                        <a href="" class="banner2">ほーむぺーじ</a>
+                    </li>
+                </ul>
+            </section>
             <section id="section_2">
-                <h2 class="main_ttl niji m50">
-                    <span>こ</span><span>の</span><span>ホ</span><span>ー</span><span>ム</span><span>ペ</span><span>ー</span><span>ジ</span><span>に</span><span>つ</span><span>い</span><span>て</span>
-                </h2>
+            </section>
+            <section id="section_3">
 
             </section>
-            <p class="m50">ここはどこかノスタルジックなホームページです。<br>あの頃を思い出しながら楽しんでください。</p>
-            <div class="text_attention">
-                <p>↓相互リンク募集中↓</p>
-            </div>
-            <ul class="list_banner">
-                <li>
-                    <a href="" class="banner1">★同盟★</a>
-                </li>
-                <li>
-                    <a href="" class="banner2">有意義な<br>ほーむぺーじ</a>
-                </li>
-            </ul>
-            </section>
-
-
         </div>
     </div>
 
